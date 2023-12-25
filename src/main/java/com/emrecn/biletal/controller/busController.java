@@ -35,13 +35,6 @@ public class busController {
         return "get-bus-detail";
     }
 
-    @GetMapping("/savePassenger")
-    public String showThePassenger(Model model, @RequestParam("busId") int Id){
-        Bus  theBus = busServis.getbusById(Id);
-        List<Passenger> passengers = theBus.getPassengers();
-        model.addAttribute("passenger" , passengers);
-        return "get-bus-detail";
-    }
 
     @GetMapping("/formForAdd")
     public String showFormForAdd(Model model){
