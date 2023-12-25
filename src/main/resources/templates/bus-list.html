@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Employee Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Bus Directory</h3>
+    <hr>
+
+    <a th:href="@{/bus/formForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Bus
+        </a>
+
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>FIRMA</th>
+                <th>DESTINATION</th>
+                <th>DEPARTUR TIME</th>
+                <th>ARRIVAL TIME</th>
+                <th>CAPACITY</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="tempBus : ${buses}">
+
+                <td th:text="${tempBus.id}" />
+                <td th:text="${tempBus.firma}" />
+                <td th:text="${tempBus.destination}" />
+                <td th:text="${tempBus.departureTime}" />
+                <td th:text="${tempBus.arrivalTime}" />
+                <td th:text="${tempBus.capacity}" />
+                <td>
+                    <a th:href="@{/bus/busdetail(busId = ${tempBus.id} )}"
+                       class="btn btn-info btn-sm">
+                        SHOW THE BUS
+                    </a>
+
+                    <a th:href="@{/bus/delete(busId = ${tempBus.id} )}"
+                       class="btn btn-info btn-sm" onclick="if (!(confirm('are you sure ?'))) return false">
+                        DELETE THE BUS
+                    </a>
+
+                    <a th:href="@{/bus/formForPassengerAdd(busId = ${tempBus.id})}"
+                       class="btn btn-primary btn-sm mb-3">
+                        Add New Passenger
+                    </a>
+                    <a th:href="@{/bus/update(busId = ${tempBus.id})}"
+                       class="btn btn-primary btn-sm mb-3">
+                        Update bus
+                    </a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+ </div>
+
+</body>
+</html>
+
+
+
